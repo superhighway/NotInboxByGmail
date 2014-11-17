@@ -63,23 +63,7 @@
         0, (_originRect.origin.y+_originRect.size.height)*scale, w*scale,
         (H-(_originRect.origin.y+_originRect.size.height))*scale
     };
-
-    CGImageRef imageRef = CGImageCreateWithImageInRect([img CGImage], slice1);
-    UIImageView *navigationBarImageView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:imageRef]];
-    navigationBarImageView.frame = slice1;
-    navigationBarImageView.translatesAutoresizingMaskIntoConstraints = NO;
-    navigationBarImageView.contentMode = UIViewContentModeScaleAspectFit;
-    [navigationBarImageView sizeToFit];
-    [vc.view insertSubview:navigationBarImageView belowSubview:self.containerView];
-    NSLayoutConstraint *navigationBarImageViewTopConstraint = [NSLayoutConstraint constraintWithItem:navigationBarImageView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:vc.view attribute:NSLayoutAttributeTop multiplier:1 constant:slice1.origin.y/scale];
-    [vc.view addConstraints:@[
-                              navigationBarImageViewTopConstraint,
-                              [NSLayoutConstraint constraintWithItem:navigationBarImageView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:vc.view attribute:NSLayoutAttributeLeft multiplier:1 constant:0],
-                              [NSLayoutConstraint constraintWithItem:navigationBarImageView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:vc.view attribute:NSLayoutAttributeRight multiplier:1 constant:0],
-                              [NSLayoutConstraint constraintWithItem:navigationBarImageView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:slice1.size.height/scale],
-                              ]];
-    self.navigationBarImageView = navigationBarImageView;
-    self.navigationBarImageViewTopConstraint = navigationBarImageViewTopConstraint;
+    CGImageRef imageRef;
 
     imageRef = CGImageCreateWithImageInRect([img CGImage], slice2);
     UIImageView *topCurtainImageView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:imageRef]];
@@ -96,6 +80,23 @@
                               ]];
     self.topCurtainImageView = topCurtainImageView;
     self.topCurtainImageViewTopConstraint = topCurtainImageViewTopConstraint;
+
+    imageRef = CGImageCreateWithImageInRect([img CGImage], slice1);
+    UIImageView *navigationBarImageView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:imageRef]];
+    navigationBarImageView.frame = slice1;
+    navigationBarImageView.translatesAutoresizingMaskIntoConstraints = NO;
+    navigationBarImageView.contentMode = UIViewContentModeScaleAspectFit;
+    [navigationBarImageView sizeToFit];
+    [vc.view insertSubview:navigationBarImageView belowSubview:self.containerView];
+    NSLayoutConstraint *navigationBarImageViewTopConstraint = [NSLayoutConstraint constraintWithItem:navigationBarImageView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:vc.view attribute:NSLayoutAttributeTop multiplier:1 constant:slice1.origin.y/scale];
+    [vc.view addConstraints:@[
+                              navigationBarImageViewTopConstraint,
+                              [NSLayoutConstraint constraintWithItem:navigationBarImageView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:vc.view attribute:NSLayoutAttributeLeft multiplier:1 constant:0],
+                              [NSLayoutConstraint constraintWithItem:navigationBarImageView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:vc.view attribute:NSLayoutAttributeRight multiplier:1 constant:0],
+                              [NSLayoutConstraint constraintWithItem:navigationBarImageView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:slice1.size.height/scale],
+                              ]];
+    self.navigationBarImageView = navigationBarImageView;
+    self.navigationBarImageViewTopConstraint = navigationBarImageViewTopConstraint;
 
     imageRef = CGImageCreateWithImageInRect([img CGImage], slice3);
     UIImageView *bottomCurtainImageView = [[UIImageView alloc] initWithImage:[UIImage imageWithCGImage:imageRef]];
@@ -119,17 +120,37 @@
     self.containerViewBottomConstraint.constant = self.animatingImage.size.height - CGRectGetMaxY(self.originRect);
     [self.view layoutIfNeeded];
     typeof(self) weakSelf = self;
+    self.containerView.alpha = 0;
 
-    [UIView animateWithDuration:0.3 animations:^{
-        weakSelf.navigationBarImageViewTopConstraint.constant = -64;
-        weakSelf.topCurtainImageViewTopConstraint.constant = -weakSelf.topCurtainImageView.frame.size.height;
-        weakSelf.bottomCurtainImageViewBottomConstraint.constant = weakSelf.view.frame.size.height;
+    [UIView animateKeyframesWithDuration:0.3
+                                   delay:0.0
+                                 options:UIViewKeyframeAnimationOptionCalculationModeLinear
+                              animations:^{
+                                  [UIView addKeyframeWithRelativeStartTime:0.0
+                                                          relativeDuration:1
+                                                                animations:^{
+                                                                    weakSelf.containerViewTopConstraint.constant = 0;
+                                                                    weakSelf.containerViewBottomConstraint.constant = 0;
+                                                                }];
 
-        weakSelf.containerViewTopConstraint.constant = 0;
-        weakSelf.containerViewBottomConstraint.constant = 0;
-        [weakSelf.view layoutIfNeeded];
-    } completion:^(BOOL finished) {
-    }];
+                                  [UIView addKeyframeWithRelativeStartTime:0.0
+                                                          relativeDuration:2/3.0
+                                                                animations:^{
+                                                                    weakSelf.topCurtainImageViewTopConstraint.constant = -weakSelf.topCurtainImageView.frame.size.height+64+92;
+                                                                    weakSelf.bottomCurtainImageViewBottomConstraint.constant = weakSelf.view.frame.size.height;
+                                                                }];
+                                  [UIView addKeyframeWithRelativeStartTime:2/3.0
+                                                          relativeDuration:1/3.0
+                                                                animations:^{
+                                                                    weakSelf.navigationBarImageViewTopConstraint.constant = -64;
+                                                                    weakSelf.topCurtainImageViewTopConstraint.constant = -weakSelf.topCurtainImageView.frame.size.height;
+                                                                    weakSelf.containerView.alpha = 1;
+                                                                }];
+                                  [weakSelf.view layoutIfNeeded];
+
+                              }
+                              completion:^(BOOL finished) {
+                              }];
 }
 
 - (void)animateOut
@@ -139,21 +160,41 @@
     [self.containerView layoutIfNeeded];
     typeof(self) weakSelf = self;
 
-    [UIView animateWithDuration:0.3 animations:^{
-        weakSelf.navigationBarImageViewTopConstraint.constant = 0;
-        weakSelf.topCurtainImageViewTopConstraint.constant = 64;
-        weakSelf.bottomCurtainImageViewBottomConstraint.constant = 0;
+    [UIView animateKeyframesWithDuration:0.3
+                                   delay:0.0
+                                 options:UIViewKeyframeAnimationOptionCalculationModeLinear
+                              animations:^{
+                                  [UIView addKeyframeWithRelativeStartTime:0.0
+                                                          relativeDuration:1
+                                                                animations:^{
+                                                                    weakSelf.containerViewTopConstraint.constant = weakSelf.originRect.origin.y;
+                                                                    weakSelf.containerViewBottomConstraint.constant = weakSelf.animatingImage.size.height - CGRectGetMaxY(weakSelf.originRect);
+                                                                }];
 
-        weakSelf.containerViewTopConstraint.constant = weakSelf.originRect.origin.y;
-        weakSelf.containerViewBottomConstraint.constant = weakSelf.animatingImage.size.height - CGRectGetMaxY(weakSelf.originRect);
-        [weakSelf.view layoutIfNeeded];
-        weakSelf.containerView.alpha = 0;
-    } completion:^(BOOL finished) {
-        [weakSelf willMoveToParentViewController:nil];
-        [weakSelf.view removeFromSuperview];
-        [weakSelf removeFromParentViewController];
-        [weakSelf didMoveToParentViewController:nil];
-    }];
+                                  [UIView addKeyframeWithRelativeStartTime:0
+                                                          relativeDuration:1/3.0
+                                                                animations:^{
+                                                                    weakSelf.navigationBarImageViewTopConstraint.constant = 0;
+                                                                    weakSelf.topCurtainImageViewTopConstraint.constant = -weakSelf.topCurtainImageView.frame.size.height+64+92;
+                                                                    weakSelf.containerView.alpha = 0;
+                                                                }];
+
+                                  [UIView addKeyframeWithRelativeStartTime:1/3.0
+                                                          relativeDuration:2/3.0
+                                                                animations:^{
+                                                                    weakSelf.topCurtainImageViewTopConstraint.constant = 64;
+                                                                    weakSelf.bottomCurtainImageViewBottomConstraint.constant = 0;
+                                                                }];
+
+                                  [weakSelf.view layoutIfNeeded];
+
+                              }
+                              completion:^(BOOL finished) {
+                                  [weakSelf willMoveToParentViewController:nil];
+                                  [weakSelf.view removeFromSuperview];
+                                  [weakSelf removeFromParentViewController];
+                                  [weakSelf didMoveToParentViewController:nil];
+                              }];
 }
 
 @end
