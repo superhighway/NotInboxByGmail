@@ -26,8 +26,7 @@
 
 - (void)didTapClose:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:^{
-    }];
+    [(NBDetailListContainerViewController *)self.parentViewController.parentViewController dismiss];
 }
 
 - (void)didReceiveMemoryWarning {

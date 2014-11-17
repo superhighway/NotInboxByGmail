@@ -122,6 +122,7 @@
     typeof(self) weakSelf = self;
     self.containerView.alpha = 0;
 
+    // TODO: attempt to copy relative duration too
     [UIView animateKeyframesWithDuration:0.3
                                    delay:0.0
                                  options:UIViewKeyframeAnimationOptionCalculationModeLinear

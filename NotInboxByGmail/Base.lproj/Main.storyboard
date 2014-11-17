@@ -73,19 +73,75 @@
             </objects>
             <point key="canvasLocation" x="121" y="835"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Inside Something-->
         <scene sceneID="Lh2-oC-HPs">
             <objects>
-                <tableViewController id="jgn-sN-wxD" customClass="NBDetailListViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="OIR-UA-f0F">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <tableViewController id="jgn-sN-wxD" customClass="NBListTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="OIR-UA-f0F">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Fbb-Sy-3iq">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NBTableViewCell" rowHeight="92" id="GC6-uM-H1q">
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fbb-Sy-3iq" id="FaB-fa-okH">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GC6-uM-H1q" id="5su-SP-mvQ">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mFg-Gc-Mqo">
+                                            <rect key="frame" x="16" y="16" width="44" height="44"/>
+                                            <color key="backgroundColor" red="0.88896465300000005" green="0.41796451810000002" blue="0.31232827899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="tintColor" red="0.88896465300000005" green="0.41796451810000002" blue="0.31232827899999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="44" id="SZW-Ls-vyO"/>
+                                                <constraint firstAttribute="height" constant="44" id="UsL-yy-eCN"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="22"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thing" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7yD-k2-0Tl">
+                                            <rect key="frame" x="76" y="16" width="228" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="Is1-kj-p23"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some guy over the rainbow" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2Z-RO-GxZ">
+                                            <rect key="frame" x="76" y="37" width="228" height="18"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="18" id="hNA-tF-GC7"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Once upon a time, there's a thing that was planted over the rainbow." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5XB-iS-9u7">
+                                            <rect key="frame" x="76" y="56" width="228" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="CyL-NE-xXT"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="5XB-iS-9u7" firstAttribute="top" secondItem="I2Z-RO-GxZ" secondAttribute="bottom" constant="1" id="0PM-rn-g1h"/>
+                                        <constraint firstItem="7yD-k2-0Tl" firstAttribute="leading" secondItem="mFg-Gc-Mqo" secondAttribute="trailing" constant="16" id="1fE-Qn-zdQ"/>
+                                        <constraint firstAttribute="trailing" secondItem="5XB-iS-9u7" secondAttribute="trailing" constant="16" id="4sx-CA-OTe"/>
+                                        <constraint firstItem="I2Z-RO-GxZ" firstAttribute="leading" secondItem="mFg-Gc-Mqo" secondAttribute="trailing" constant="16" id="AuU-Ol-C0j"/>
+                                        <constraint firstAttribute="trailing" secondItem="7yD-k2-0Tl" secondAttribute="trailing" constant="16" id="Eym-Ih-pUg"/>
+                                        <constraint firstItem="mFg-Gc-Mqo" firstAttribute="leading" secondItem="5su-SP-mvQ" secondAttribute="leading" constant="16" id="Hst-jV-fpK"/>
+                                        <constraint firstAttribute="trailing" secondItem="I2Z-RO-GxZ" secondAttribute="trailing" constant="16" id="OIP-GA-Yuy"/>
+                                        <constraint firstItem="I2Z-RO-GxZ" firstAttribute="top" secondItem="7yD-k2-0Tl" secondAttribute="bottom" id="VAs-fH-GTj"/>
+                                        <constraint firstItem="5XB-iS-9u7" firstAttribute="leading" secondItem="mFg-Gc-Mqo" secondAttribute="trailing" constant="16" id="jPi-74-kwt"/>
+                                        <constraint firstItem="mFg-Gc-Mqo" firstAttribute="top" secondItem="5su-SP-mvQ" secondAttribute="top" constant="16" id="tpb-nb-8S0"/>
+                                        <constraint firstItem="7yD-k2-0Tl" firstAttribute="top" secondItem="5su-SP-mvQ" secondAttribute="top" constant="16" id="wT2-cl-Dc2"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -94,7 +150,7 @@
                             <outlet property="delegate" destination="jgn-sN-wxD" id="DAj-db-KQf"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="GOS-sY-TKQ">
+                    <navigationItem key="navigationItem" title="Inside Something" id="GOS-sY-TKQ">
                         <barButtonItem key="leftBarButtonItem" systemItem="stop" id="XwR-nx-z4T">
                             <connections>
                                 <action selector="didTapClose:" destination="jgn-sN-wxD" id="UXT-9p-L6t"/>
@@ -110,9 +166,10 @@
         <scene sceneID="M8t-GK-Skw">
             <objects>
                 <navigationController id="8r0-ae-kY8" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YP2-Dj-sHb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="YP2-Dj-sHb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <connections>
                         <segue destination="jgn-sN-wxD" kind="relationship" relationship="rootViewController" id="tFQ-ku-Ygx"/>

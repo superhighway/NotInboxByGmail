@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0C850E941A14076700AD2601 /* NBDetailListContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C850E931A14076700AD2601 /* NBDetailListContainerViewController.m */; };
-		0C850E971A140D4700AD2601 /* NBDetailListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C850E961A140D4700AD2601 /* NBDetailListViewController.m */; };
 		0CE7E30D1A0F10D90005AE95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7E30C1A0F10D90005AE95 /* main.m */; };
 		0CE7E3101A0F10D90005AE95 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CE7E30F1A0F10D90005AE95 /* AppDelegate.m */; };
 		0CE7E3161A0F10D90005AE95 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CE7E3141A0F10D90005AE95 /* Main.storyboard */; };
@@ -33,8 +32,6 @@
 /* Begin PBXFileReference section */
 		0C850E921A14076700AD2601 /* NBDetailListContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBDetailListContainerViewController.h; sourceTree = "<group>"; };
 		0C850E931A14076700AD2601 /* NBDetailListContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBDetailListContainerViewController.m; sourceTree = "<group>"; };
-		0C850E951A140D4700AD2601 /* NBDetailListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NBDetailListViewController.h; sourceTree = "<group>"; };
-		0C850E961A140D4700AD2601 /* NBDetailListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NBDetailListViewController.m; sourceTree = "<group>"; };
 		0CE7E3071A0F10D90005AE95 /* NotInboxByGmail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotInboxByGmail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CE7E30B1A0F10D90005AE95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CE7E30C1A0F10D90005AE95 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -107,8 +104,6 @@
 				0CED6C3E1A109507007E7BA3 /* UIView+Screenshot.m */,
 				0C850E921A14076700AD2601 /* NBDetailListContainerViewController.h */,
 				0C850E931A14076700AD2601 /* NBDetailListContainerViewController.m */,
-				0C850E951A140D4700AD2601 /* NBDetailListViewController.h */,
-				0C850E961A140D4700AD2601 /* NBDetailListViewController.m */,
 			);
 			path = NotInboxByGmail;
 			sourceTree = "<group>";
@@ -244,7 +239,6 @@
 				0CE7E30D1A0F10D90005AE95 /* main.m in Sources */,
 				0CE7E3321A0F13900005AE95 /* NBContainerViewController.m in Sources */,
 				0CED6C3F1A109507007E7BA3 /* UIView+Screenshot.m in Sources */,
-				0C850E971A140D4700AD2601 /* NBDetailListViewController.m in Sources */,
 				0C850E941A14076700AD2601 /* NBDetailListContainerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
